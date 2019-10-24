@@ -37,8 +37,9 @@ public class managerCheckCollision : MonoBehaviour
                     distance = Mathf.Pow(Mathf.Abs(positionBall1.x - positionBall2.x), 2) + 
                                Mathf.Pow(Mathf.Abs(positionBall1.y - positionBall2.y), 2);
 
-                    comparation = distance - (balls[i].localScale.x + 0.5f);
-                    if(comparation <= 0)
+                    comparation = distance - (Mathf.Max(balls[i].localScale.x, balls[i].localScale.y) +
+                    (Mathf.Max(balls[t].localScale.x, balls[t].localScale.y)));
+                    if (comparation <= 0)
                     {
                         ballsCollision[i].myCollision();
                         ballsCollision[t].myCollision();
