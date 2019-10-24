@@ -1,0 +1,36 @@
+EN EL CÓDIGO
+
+- Los nombres de los scripts y de las funciones comienzan con mayúsculas
+
+- managerCheckCollision es un nombre bastante feo para una clase, por lo general en unity los managers acaban su nombre 
+  con la palabra "Manager", y la palabra "Check" ya esta en el nombre de la función. Un mejor nombre seria CollisionManager
+
+- El float distance está inicializado como = 0; No hagan eso, inicializarlo a 0.0f
+
+- [SerializeField] Hace que una variable que se compila de forma binaria (privadas o protegidas) se guarde como archivo de texto (como una variable pública). 
+  Por como funciona el Inspector de Unity, solo muestra las variables que están compiladas como archivos de texto.
+  Siempre se arman debates entre los programadores con estas cosas. Yo soy partidario de que una variable que va a exponerse al editor debe ser pública xq 
+  hacerla privada y luego serializarla implica crear una variable, hacerla un archivo binario y luego pasar pasar ese archivo binario pasarlo a archivo de texto.
+  "[SerializeField]" solo se usa (bajo mi criterio, osea el criterio que va a corregir el TP ;)) cuando el GameDessigner debería poder modificar una variable desde 
+  el editor de Unity pero no se debería poder acceder desde otra clase bajo ningún contexto.
+
+- La variables "balls" y "ballsCollision" hacen referencia al mismo objeto, y además ambas están expuestas.
+  en Unity todas las clases que hereden de la clase "MonoBehaviour" tienen referencia al Gameobject y al Transform al que están asignados
+  pueden usarlas poniendo ballsCollision[0].gameobject y  ballsCollision[0].transform
+
+EN LA ESCENA
+
+- No pongan todos los objetos como hijos de un único objeto. Los objetos calculan su posición respecto a la posición de su objeto padre, y este cálculo lo hace la placa gráfica.
+
+- Quiten el GameObject "ballManager" que contienen las pelotas, por el mismo motivo antes mencionado
+
+- No pongan cosas como hijos de la cámara
+
+- El sprite y el script de las pelotas debería estar en el mismo GameObject, por lo mismo, evitar transforms al dope
+
+EN EL PROYECTO
+
+- Separen las cosas por tipo de archivo, no por elemento de juego
+
+
+  
