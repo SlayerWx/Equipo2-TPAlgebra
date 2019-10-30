@@ -15,4 +15,8 @@ public class Movement : MonoBehaviour
     {
         
     }
+    private void MyMovement(Vector2 force , Vector2 acceleration)
+    {
+        //velocidad inicial - aceleracion
+    }
 }
