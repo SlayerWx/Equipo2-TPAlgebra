@@ -41,7 +41,7 @@ public class CollisionManager : MonoBehaviour
             }
         }
     }
-    private Vector2 getResultAcceleration(Vector2 force,float mass)
+    private Vector2 GetResultAcceleration(Vector2 force,float mass)
     {
         Vector2 resultAcceleration;
         resultAcceleration.x = 0;

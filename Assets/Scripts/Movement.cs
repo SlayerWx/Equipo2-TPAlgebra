@@ -6,17 +6,41 @@ public class Movement : MonoBehaviour
 {
     private const int mass = 160;
     private Vector2 acceleration;
+    private Vector2 force;
 
     void Start()
     {
         acceleration = new Vector2(0.0f, 0.0f);
+        force = new Vector2(0.0f, 0.0f);
     }
     void Update()
     {
-        
+        MyMovement();
     }
-    private void MyMovement(Vector2 force , Vector2 acceleration)
+    private void MyMovement()
     {
-        //velocidad inicial - aceleracion
+        if (force.x == 0 && force.y == 0)
+        {
+            transform.position.Set(transform.position.x + (force.x * Time.deltaTime),
+                                   transform.position.y + (force.y * Time.deltaTime), transform.position.z);
+            force -= acceleration;
+        }
+        if (Mathf.Abs(force.x) < Mathf.Abs(acceleration.x)&& Mathf.Abs(force.y) < Mathf.Abs(acceleration.y))
+        {
+            force.x = 0;
+            force.y = 0;
+            acceleration.x = 0;
+            acceleration.y = 0;
+        }
+    }
+    private void SetAcceleration(Vector2 newAcceleration)
+    {
+        acceleration = newAcceleration;
+
+    }
+    private void SetInitialForce(Vector2 newForce)
+    {
+        force = newForce;
+
     }
 }
