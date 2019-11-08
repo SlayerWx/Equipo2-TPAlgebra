@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 88183488}
   - component: {fileID: 88183487}
   - component: {fileID: 88183486}
+  - component: {fileID: 88183489}
   m_Layer: 0
   m_Name: blackBall
   m_TagString: Untagged
@@ -362,6 +363,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &88183489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88183485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5a3f65d6ec3e346bc35c320d303d25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x: 0
+  y: 0
 --- !u!1 &181189386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,6 +1270,7 @@ GameObject:
   - component: {fileID: 1219502628}
   - component: {fileID: 1219502627}
   - component: {fileID: 1219502626}
+  - component: {fileID: 1219502629}
   m_Layer: 0
   m_Name: whiteBall
   m_TagString: Untagged
@@ -1337,6 +1353,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1219502629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219502625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5a3f65d6ec3e346bc35c320d303d25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x: 5
+  y: 0
 --- !u!1 &1319390157
 GameObject:
   m_ObjectHideFlags: 0

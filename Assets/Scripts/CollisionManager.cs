@@ -7,6 +7,7 @@ public class CollisionManager : MonoBehaviour
     public GameObject[] balls;
     void Start()
     {
+     //   balls[0].GetComponent<Movement>().SetAcceleration(GetResultAcceleration(new Vector2(1,1), 0));
     }
     void Update()
     {
@@ -28,14 +29,13 @@ public class CollisionManager : MonoBehaviour
                     positionBall2 = balls[t].transform.position;
                     distance = Mathf.Pow(Mathf.Abs(positionBall1.x - positionBall2.x), 2) +
                                Mathf.Pow(Mathf.Abs(positionBall1.y - positionBall2.y), 2);
-
                     comparation = distance - 
                     (Mathf.Max(balls[i].transform.localScale.x, balls[i].transform.localScale.y) +
                     (Mathf.Max(balls[t].transform.localScale.x, balls[t].transform.localScale.y)));
                     if (comparation <= 0)
-                    {
-                        balls[i].GetComponent<BallCollision>().MyCollision();
-                        balls[t].GetComponent<BallCollision>().MyCollision();
+                    { 
+                        balls[i].GetComponent<BallCollision>().MyCollision(balls[t].transform.position);
+                        balls[t].GetComponent<BallCollision>().MyCollision(balls[i].transform.position);
                     }
                 }
             }
