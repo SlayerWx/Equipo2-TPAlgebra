@@ -5,9 +5,12 @@ using UnityEngine;
 public class CollisionManager : MonoBehaviour
 {
     public GameObject[] balls;
+    public RectCollider[] walls;
     void Start()
     {
-     //   balls[0].GetComponent<Movement>().SetAcceleration(GetResultAcceleration(new Vector2(1,1), 0));
+    }
+    private void OnEnable()
+    {
     }
     void Update()
     {
@@ -21,6 +24,7 @@ public class CollisionManager : MonoBehaviour
         float comparation;
         for (ushort i = 0; i < balls.Length; i++)
         {
+
             positionBall1 = balls[i].transform.position;
             for (ushort t = 0; t < balls.Length; t++)
             {
@@ -29,11 +33,11 @@ public class CollisionManager : MonoBehaviour
                     positionBall2 = balls[t].transform.position;
                     distance = Mathf.Pow(Mathf.Abs(positionBall1.x - positionBall2.x), 2) +
                                Mathf.Pow(Mathf.Abs(positionBall1.y - positionBall2.y), 2);
-                    comparation = distance - 
+                    comparation = distance -
                     (Mathf.Max(balls[i].transform.localScale.x, balls[i].transform.localScale.y) +
                     (Mathf.Max(balls[t].transform.localScale.x, balls[t].transform.localScale.y)));
                     if (comparation <= 0)
-                    { 
+                    {
                         balls[i].GetComponent<BallCollision>().MyCollision(balls[t].transform.position);
                         balls[t].GetComponent<BallCollision>().MyCollision(balls[i].transform.position);
                     }
@@ -41,7 +45,7 @@ public class CollisionManager : MonoBehaviour
             }
         }
     }
-    private Vector2 GetResultAcceleration(Vector2 force,float mass)
+    private Vector2 GetResultAcceleration(Vector2 force, float mass)
     {
         Vector2 resultAcceleration;
         resultAcceleration.x = 0;
@@ -49,9 +53,17 @@ public class CollisionManager : MonoBehaviour
         resultAcceleration.x = force.x / mass;
         resultAcceleration.y = force.y / mass;
 
-        resultAcceleration.x = resultAcceleration.x / Mathf.Pow(Time.deltaTime, 2);
-        resultAcceleration.y = resultAcceleration.y / Mathf.Pow(Time.deltaTime, 2);
+        resultAcceleration.x = resultAcceleration.x;// /Mathf.Pow(Time.deltaTime, 2);
+        resultAcceleration.y = resultAcceleration.y;// / Mathf.Pow(Time.deltaTime, 2);
         Debug.Log("aceleracion conseguida: x:" + resultAcceleration.x + " y:" + resultAcceleration.y);
         return resultAcceleration;
+    }
+    IEnumerator asdasdas()
+    {
+        for (int i = 0; i < 25; i++)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
     }
 }

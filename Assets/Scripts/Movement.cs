@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
-        acceleration = new Vector2(0.0f, 0.0f);
+     //   acceleration = new Vector2(0.0f, 0.0f);
         force = new Vector2(x, y);
     }
     void Update()
@@ -27,16 +27,17 @@ public class Movement : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x + (force.x * Time.deltaTime),
                                    transform.position.y + (force.y * Time.deltaTime), transform.position.z);
-         //   force -= acceleration;
+
+            force -= acceleration;
             Debug.Log("FORCE");
         }
-        /*if (Mathf.Abs(force.x) < Mathf.Abs(acceleration.x)&& Mathf.Abs(force.y) < Mathf.Abs(acceleration.y))
+        if (Mathf.Abs(force.x) < Mathf.Abs(acceleration.x)&& Mathf.Abs(force.y) < Mathf.Abs(acceleration.y))
         {
             force.x = 0;
             force.y = 0;
             acceleration.x = 0;
             acceleration.y = 0;
-        }*/
+        }
     }
     public void SetAcceleration(Vector2 newAcceleration)
     {
