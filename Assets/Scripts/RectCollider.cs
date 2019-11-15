@@ -6,6 +6,7 @@ public class RectCollider : MonoBehaviour
 {
     public Rect collider;
     public GameObject anotherGO;
+    public bool changeOrientation;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,21 @@ public class RectCollider : MonoBehaviour
     {
         if (collider.Contains(anotherGO.transform.position))
         {
-            Debug.Log("zdfbkzgzsi");
+            Movement anotherMovement = anotherGO.GetComponent<Movement>();
+            if(changeOrientation)
+            {
+                anotherMovement.SetAcceleration(new Vector2(anotherMovement.GetAceleration().x *-1,
+                                                            anotherMovement.GetAceleration().y));
+                anotherMovement.SetForce(new Vector2(anotherMovement.GetForce().x*-1,
+                                                    anotherMovement.GetForce().y));
+            }
+            else
+            {
+                anotherMovement.SetAcceleration(new Vector2(anotherMovement.GetAceleration().x,
+                                                            anotherMovement.GetAceleration().y*-1));
+                anotherMovement.SetForce(new Vector2(anotherMovement.GetForce().x,
+                                                    anotherMovement.GetForce().y*-1));
+            }
         }
     }
 

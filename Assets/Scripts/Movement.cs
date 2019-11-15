@@ -44,7 +44,7 @@ public class Movement : MonoBehaviour
         acceleration = newAcceleration;
 
     }
-    public void SetInitialForce(Vector2 newForce)
+    public void SetForce(Vector2 newForce)
     {
         force = newForce;
 
@@ -52,5 +52,9 @@ public class Movement : MonoBehaviour
     public Vector2 GetForce()
     {
         return force;
+    }
+        public Vector2 GetAceleration()
+    {
+        return acceleration;
     }
 }
