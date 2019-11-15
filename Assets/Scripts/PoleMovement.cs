@@ -6,6 +6,9 @@ public class PoleMovement : MonoBehaviour
 {
     // Update is called once per frame
     bool hitStage;
+    float backSpeed = 0.02f;
+    public Transform whiteBall;
+
     private void Start()
     {
         hitStage = false;
@@ -23,7 +26,26 @@ public class PoleMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.A)) transform.Rotate(0, 0, -speed);
 
         }
-        else
-            transform.Translate(-0.03f, 0, 0);
+        else {
+            transform.Translate(-backSpeed, 0, 0);
+
+            if (transform.position.x < -5.0f)
+            {
+                backSpeed = 0;
+            }
+
+            if (Input.GetKey(KeyCode.Space))
+            {
+                transform.localPosition = whiteBall.transform.localPosition;
+            }
+            float yPosition =  Mathf.Abs(transform.position.y);
+            if(yPosition==5)
+            {
+                Mathf.Lerp(0, -5, 1);
+            }
+            else
+                Mathf.Lerp(0, 5, 1);
+        }
+        
     }
 }

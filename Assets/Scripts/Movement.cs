@@ -11,11 +11,13 @@ public class Movement : MonoBehaviour
     [SerializeField]
     float y;
     private Vector2 force;
+    public bool collisionWithWall;
 
     void Start()
     {
-     //   acceleration = new Vector2(0.0f, 0.0f);
+        //   acceleration = new Vector2(0.0f, 0.0f);
         force = new Vector2(x, y);
+        collisionWithWall = false;
     }
     void Update()
     {
@@ -31,7 +33,7 @@ public class Movement : MonoBehaviour
             force -= acceleration;
             Debug.Log("FORCE");
         }
-        if (Mathf.Abs(force.x) < Mathf.Abs(acceleration.x)&& Mathf.Abs(force.y) < Mathf.Abs(acceleration.y))
+        if (Mathf.Abs(force.x) < Mathf.Abs(acceleration.x) && Mathf.Abs(force.y) < Mathf.Abs(acceleration.y))
         {
             force.x = 0;
             force.y = 0;
@@ -53,7 +55,7 @@ public class Movement : MonoBehaviour
     {
         return force;
     }
-        public Vector2 GetAceleration()
+    public Vector2 GetAceleration()
     {
         return acceleration;
     }
