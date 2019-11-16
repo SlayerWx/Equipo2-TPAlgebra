@@ -31,7 +31,6 @@ public class Movement : MonoBehaviour
                                    transform.position.y + (force.y * Time.deltaTime), transform.position.z);
 
             force -= acceleration;
-            Debug.Log("FORCE");
         }
         if (Mathf.Abs(force.x) < Mathf.Abs(acceleration.x) && Mathf.Abs(force.y) < Mathf.Abs(acceleration.y))
         {

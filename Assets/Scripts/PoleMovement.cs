@@ -18,7 +18,8 @@ public class PoleMovement : MonoBehaviour
     {
         float speed = 2.0f;
 
-        if (Input.GetKey(KeyCode.Space)) hitStage = true;
+                  //GetKey >> GetKeyDown
+        if (Input.GetKeyDown(KeyCode.Space)) hitStage = true;
         if (!hitStage)
         {
             if (Input.GetKey(KeyCode.LeftShift)) speed /= 3.0f;
@@ -34,7 +35,8 @@ public class PoleMovement : MonoBehaviour
                 backSpeed = 0;
             }
 
-            if (Input.GetKey(KeyCode.Space))
+                      //GetKey >> GetKeyDown
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 transform.localPosition = whiteBall.transform.localPosition;
             }
