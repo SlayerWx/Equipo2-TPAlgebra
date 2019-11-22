@@ -26,7 +26,7 @@ public class Movement : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x + (force.x * Time.deltaTime),
                                    transform.position.y + (force.y * Time.deltaTime), transform.position.z);
-            acceleration *= 1.1f;
+            acceleration *= 1.01f;
             force -= acceleration;
         }
         if (Mathf.Abs(force.x) < Mathf.Abs(acceleration.x) && Mathf.Abs(force.y) < Mathf.Abs(acceleration.y))
