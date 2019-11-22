@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    private const int mass = 10;//00;
+    private const int mass = 500;
     private Vector2 acceleration;
-    [SerializeField]
-    float x;
-    [SerializeField]
-    float y;
+    public float x;
+    public float y;
     private Vector2 force;
     public bool collisionWithWall;
 
@@ -28,7 +26,7 @@ public class Movement : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x + (force.x * Time.deltaTime),
                                    transform.position.y + (force.y * Time.deltaTime), transform.position.z);
-
+            acceleration *= 1.1f;
             force -= acceleration;
         }
         if (Mathf.Abs(force.x) < Mathf.Abs(acceleration.x) && Mathf.Abs(force.y) < Mathf.Abs(acceleration.y))
