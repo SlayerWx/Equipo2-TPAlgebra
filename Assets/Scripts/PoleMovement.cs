@@ -7,45 +7,33 @@ public class PoleMovement : MonoBehaviour
     // Update is called once per frame
     bool hitStage;
     float backSpeed = 0.02f;
-    public Transform whiteBall;
+    public Transform tipPole;
+    public Transform pole;
+    float speed;
+    public float Timer;
 
-    private void Start()
+    void Start()
     {
         hitStage = false;
+        
     }
 
     void Update()
     {
-        float speed = 2.0f;
-
-        if (Input.GetKeyDown(KeyCode.Space)) hitStage = true;
+        speed = 2.0f;
         if (!hitStage)
         {
             if (Input.GetKey(KeyCode.LeftShift)) speed /= 3.0f;
             if (Input.GetKey(KeyCode.D)) transform.Rotate(0, 0, speed);
             if (Input.GetKey(KeyCode.A)) transform.Rotate(0, 0, -speed);
+            if (Input.GetKeyUp(KeyCode.Space)) hitStage = true;
 
         }
         else {
-            transform.Translate(-backSpeed, 0, 0);
+            pole.localPosition = new Vector3(Mathf.Lerp(transform.position.x - tipPole.localPosition.x, 
+                transform.position.x,Timer),0, 0);
 
-            if (transform.position.x < -5.0f)
-            {
-                backSpeed = 0;
-            }
-            
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                transform.localPosition = whiteBall.transform.localPosition;
-            }
-            float yPosition =  Mathf.Abs(transform.position.y);
-            if(yPosition==5)
-            {
-                Mathf.Lerp(0, -5, 1);
-            }
-            else
-                Mathf.Lerp(0, 5, 1);
         }
-        
+
     }
 }
