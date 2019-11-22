@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    private const int mass = 160;
+    private const int mass = 10;//00;
     private Vector2 acceleration;
     [SerializeField]
     float x;

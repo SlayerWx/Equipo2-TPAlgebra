@@ -1322,6 +1322,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tipPole: {fileID: 415417607}
   pole: {fileID: 1545490630}
+  whiteCollision: {fileID: 1219502627}
+  maxForce: 0
   Timer: 0
 --- !u!1 &1106988895
 GameObject:

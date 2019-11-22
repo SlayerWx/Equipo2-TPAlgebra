@@ -30,10 +30,11 @@ public class BallCollision : MonoBehaviour
     }
     public void MyCollision(Vector2 collisionEnemy)
     {
+        collisionReady = false;
         if (collisionReady)
         {
-            reDireccion.x = (transform.position.x - collisionEnemy.x);// * -1;
-            reDireccion.y = (transform.position.y - collisionEnemy.y);// * -1;
+            reDireccion.x = transform.position.x - collisionEnemy.x;
+            reDireccion.y = transform.position.y - collisionEnemy.y;
 
             direccion += reDireccion;
             myMovement.SetForce(direccion);
