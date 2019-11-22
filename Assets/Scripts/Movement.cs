@@ -15,7 +15,6 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
-        //   acceleration = new Vector2(0.0f, 0.0f);
         force = new Vector2(x, y);
         collisionWithWall = false;
     }
@@ -34,10 +33,10 @@ public class Movement : MonoBehaviour
         }
         if (Mathf.Abs(force.x) < Mathf.Abs(acceleration.x) && Mathf.Abs(force.y) < Mathf.Abs(acceleration.y))
         {
-            force.x = 0;
-            force.y = 0;
-            acceleration.x = 0;
-            acceleration.y = 0;
+            force.x = 0.0f;
+            force.y = 0.0f;
+            acceleration.x = 0.0f;
+            acceleration.y = 0.0f;
         }
     }
     public void SetAcceleration(Vector2 newAcceleration)
@@ -57,5 +56,21 @@ public class Movement : MonoBehaviour
     public Vector2 GetAceleration()
     {
         return acceleration;
+    }
+    public int GetMass()
+    {
+        return mass;
+    }
+
+    public Vector2 GetResultAcceleration(Vector2 force, float mass)
+    {
+        Vector2 resultAcceleration;
+        resultAcceleration.x = 0;
+        resultAcceleration.y = 0;
+        resultAcceleration.x = force.x / mass;
+        resultAcceleration.y = force.y / mass;
+        //resultAcceleration.x = resultAcceleration.x / Mathf.Pow(Time.deltaTime, 2);
+        //resultAcceleration.y = resultAcceleration.y / Mathf.Pow(Time.deltaTime, 2);
+        return resultAcceleration;
     }
 }

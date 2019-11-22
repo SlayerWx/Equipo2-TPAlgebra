@@ -40,24 +40,13 @@ public class CollisionManager : MonoBehaviour
                     {
                         balls[i].GetComponent<BallCollision>().MyCollision(balls[t].transform.position);
                         balls[t].GetComponent<BallCollision>().MyCollision(balls[i].transform.position);
+
                     }
                 }
             }
         }
     }
-    private Vector2 GetResultAcceleration(Vector2 force, float mass)
-    {
-        Vector2 resultAcceleration;
-        resultAcceleration.x = 0;
-        resultAcceleration.y = 0;
-        resultAcceleration.x = force.x / mass;
-        resultAcceleration.y = force.y / mass;
 
-        //resultAcceleration.x = resultAcceleration.x / Mathf.Pow(Time.deltaTime, 2);
-        //resultAcceleration.y = resultAcceleration.y / Mathf.Pow(Time.deltaTime, 2);
-        Debug.Log("aceleracion conseguida: x:" + resultAcceleration.x + " y:" + resultAcceleration.y);
-        return resultAcceleration;
-    }
     IEnumerator asdasdas()
     {
         for (int i = 0; i < 25; i++)
