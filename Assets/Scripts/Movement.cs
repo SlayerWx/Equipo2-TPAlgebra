@@ -16,7 +16,7 @@ public class Movement : MonoBehaviour
         force = new Vector2(x, y);
         collisionWithWall = false;
     }
-    void Update()
+    void FixedUpdate()
     {
         MyMovement();
     }

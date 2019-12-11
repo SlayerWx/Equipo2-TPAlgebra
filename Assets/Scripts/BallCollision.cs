@@ -20,7 +20,7 @@ public class BallCollision : MonoBehaviour
         firstCollitionPosition = transform.position;
         collisionReady = true;
     }
-    void Update()
+    void FixedUpdate()
     {
         if(myMovement.GetForce().x == 0.0f && myMovement.GetForce().x == 0.0f)
         {
