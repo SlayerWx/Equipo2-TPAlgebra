@@ -26,8 +26,8 @@ public class Movement : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x + (force.x * Time.deltaTime),
                                    transform.position.y + (force.y * Time.deltaTime), transform.position.z);
-            acceleration *= 1.01f;
             force -= acceleration;
+            acceleration = acceleration * 1.02f;
         }
         if (Mathf.Abs(force.x) < Mathf.Abs(acceleration.x) && Mathf.Abs(force.y) < Mathf.Abs(acceleration.y))
         {
@@ -67,8 +67,6 @@ public class Movement : MonoBehaviour
         resultAcceleration.y = 0;
         resultAcceleration.x = force.x / mass;
         resultAcceleration.y = force.y / mass;
-        //resultAcceleration.x = resultAcceleration.x / Mathf.Pow(Time.deltaTime, 2);
-        //resultAcceleration.y = resultAcceleration.y / Mathf.Pow(Time.deltaTime, 2);
         return resultAcceleration;
     }
 }

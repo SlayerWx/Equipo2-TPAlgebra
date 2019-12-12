@@ -1,33 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class PoleMovement : MonoBehaviour
 {
     // Update is called once per frame
     bool hitStage;
-    float backSpeed = 0.02f;
-    public Transform tipPole;
     public Transform pole;
     public BallCollision whiteCollision;
     public float maxForce;
+    public Animator myAnimator;
     float speed;
-    float speedLerp;
-    public float Timer;
     private bool shotTime;
-    private Vector2 positionShot;
-    int switchAnimation;
-    bool takePosition;
+    private bool animationEnded;
 
     void Start()
     {
         hitStage = false;
-        maxForce = 300.0f;
         shotTime = false;
-        speedLerp = 0.03f;
-        switchAnimation = 1;
+        animationEnded = false;
     }
-
     void Update()
     {
         speed = 2.0f;
@@ -36,47 +29,36 @@ public class PoleMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift)) speed /= 3.0f;
             if (Input.GetKey(KeyCode.D)) transform.Rotate(0, 0, speed);
             if (Input.GetKey(KeyCode.A)) transform.Rotate(0, 0, -speed);
-            if (Input.GetKeyUp(KeyCode.Space)) hitStage = true;
-            shotTime = false;
-            takePosition = false;
-        }
-        else {
-            switch (switchAnimation)
-            {
-                case 1:
-                    pole.localPosition = new Vector3(Mathf.Lerp(transform.position.x - tipPole.localPosition.x,
-                    transform.position.x, Timer), 0, 0);
-                    Timer += speedLerp;
-                    if (Timer > 1.0f) switchAnimation = 2;
-                    break;
-                case 0:
-                case 2:
-                    if (switchAnimation == 0 && takePosition) positionShot = pole.position;
-                    pole.localPosition = new Vector3(Mathf.Lerp(transform.position.x - tipPole.localPosition.x,
-                    transform.position.x, Timer), 0, 0);
-                    Timer -= speedLerp;
-                    if (switchAnimation == 2 && Timer < 0.05f) switchAnimation = 1;
-                    break;
-            }
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                takePosition = true;
-                StartCoroutine("waitAnimationPole");
-                
+                myAnimator.SetBool("stay", true);
+                hitStage = true;
             }
-            if(Timer == 3.0f)
-            {
-              //  shotTime = true;
-            }
+            shotTime = false;
+        }
+        else if(hitStage && !shotTime)
+        {
 
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                shotTime = true;
+
+                myAnimator.SetBool("shot", true);
+            }
+        }
+        else if (hitStage && shotTime)
+        {
+            myAnimator.SetBool("stay", false);
+            myAnimator.SetBool("shot", false);
+        }
+        else if(animationEnded && shotTime && hitStage)
+        {
+            whiteCollision.MyCollision(pole.position);
+            shotTime = false;
+            hitStage = false;
+            animationEnded = false;
         }
 
     }
-    IEnumerator waitAnimationPole()
-    {
-        yield return shotTime;
-        whiteCollision.MyCollision(positionShot);
-        takePosition = false;
-        switchAnimation = 2;
-    }
+
 }
