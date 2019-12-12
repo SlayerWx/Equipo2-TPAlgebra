@@ -36,7 +36,6 @@ public class PoleMovement : MonoBehaviour
             }
             if (!hitStage && !animationEnded && !shotTime)
             {
-                myAnimator.StopPlayback();
                 if (Input.GetKey(KeyCode.LeftShift)) speed /= 3.0f;
                 if (Input.GetKey(KeyCode.D)) transform.Rotate(0, 0, speed);
                 if (Input.GetKey(KeyCode.A)) transform.Rotate(0, 0, -speed);
@@ -65,8 +64,8 @@ public class PoleMovement : MonoBehaviour
                 animationEnded = false;
                 shotTime = false;
                 hitStage = false;
-                myAnimator.StopPlayback();
                 myAnimator.SetBool("shot", false);
+                transform.gameObject.SetActive(false);
             }
 
         }
