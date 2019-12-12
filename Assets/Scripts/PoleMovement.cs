@@ -36,14 +36,13 @@ public class PoleMovement : MonoBehaviour
             }
             if (!hitStage && !animationEnded && !shotTime)
             {
+                myAnimator.StopPlayback();
                 if (Input.GetKey(KeyCode.LeftShift)) speed /= 3.0f;
                 if (Input.GetKey(KeyCode.D)) transform.Rotate(0, 0, speed);
                 if (Input.GetKey(KeyCode.A)) transform.Rotate(0, 0, -speed);
                 if (Input.GetKeyUp(KeyCode.Space))
                 {
-                  //  myAnimator.SetBool("stay", true);
-                   // myAnimator.SetBool("shot", false);
-                   // myAnimator.SetBool("animationEnd", false);
+                    myAnimator.SetBool("stay", true);
                     hitStage = true;
                 }
             }
@@ -55,6 +54,8 @@ public class PoleMovement : MonoBehaviour
                     hitStage = false;
                     animationEnded = false;
                     shotTime = true;
+                    myAnimator.SetBool("stay", false);
+                    myAnimator.SetBool("shot", true);
                     StartCoroutine("StopedAnimationShot");
                 }
             }
@@ -64,6 +65,8 @@ public class PoleMovement : MonoBehaviour
                 animationEnded = false;
                 shotTime = false;
                 hitStage = false;
+                myAnimator.StopPlayback();
+                myAnimator.SetBool("shot", false);
             }
 
         }

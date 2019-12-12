@@ -9,9 +9,6 @@ public class CollisionManager : MonoBehaviour
     void Start()
     {
     }
-    private void OnEnable()
-    {
-    }
     void Update()
     {
         CheckCollisions();
