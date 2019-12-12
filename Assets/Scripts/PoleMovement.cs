@@ -14,7 +14,8 @@ public class PoleMovement : MonoBehaviour
     float speed;
     private bool shotTime;
     private bool animationEnded;
-
+    public GameObject mainMenu;
+    public GameObject pause;
     void Start()
     {
         hitStage = false;
@@ -24,41 +25,48 @@ public class PoleMovement : MonoBehaviour
     void Update()
     {
         speed = 2.0f;
-        if (!hitStage)
+        if (!pause.activeSelf && !mainMenu.activeSelf)
         {
-            if (Input.GetKey(KeyCode.LeftShift)) speed /= 3.0f;
-            if (Input.GetKey(KeyCode.D)) transform.Rotate(0, 0, speed);
-            if (Input.GetKey(KeyCode.A)) transform.Rotate(0, 0, -speed);
-            if (Input.GetKeyUp(KeyCode.Space))
+            if(Input.GetKey(KeyCode.P))
             {
-                myAnimator.SetBool("stay", true);
-                hitStage = true;
+                pause.SetActive(true);
             }
-            shotTime = false;
-        }
-        else if(hitStage && !shotTime)
-        {
-
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (!hitStage)
             {
-                shotTime = true;
-
-                myAnimator.SetBool("shot", true);
+                if (Input.GetKey(KeyCode.LeftShift)) speed /= 3.0f;
+                if (Input.GetKey(KeyCode.D)) transform.Rotate(0, 0, speed);
+                if (Input.GetKey(KeyCode.A)) transform.Rotate(0, 0, -speed);
+                if (Input.GetKeyUp(KeyCode.Space))
+                {
+                    myAnimator.SetBool("stay", true);
+                    hitStage = true;
+                }
+                shotTime = false;
             }
-        }
-        else if (hitStage && shotTime)
-        {
-            myAnimator.SetBool("stay", false);
-            myAnimator.SetBool("shot", false);
-        }
-        else if(animationEnded && shotTime && hitStage)
-        {
-            whiteCollision.MyCollision(pole.position);
-            shotTime = false;
-            hitStage = false;
-            animationEnded = false;
-        }
+            else if (hitStage && !shotTime)
+            {
 
+                if (Input.GetKeyUp(KeyCode.Space))
+                {
+                    shotTime = true;
+
+                    myAnimator.SetBool("shot", true);
+                }
+            }
+            else if (hitStage && shotTime)
+            {
+                myAnimator.SetBool("stay", false);
+                myAnimator.SetBool("shot", false);
+            }
+            else if (animationEnded && shotTime && hitStage)
+            {
+                whiteCollision.MyCollision(pole.position);
+                shotTime = false;
+                hitStage = false;
+                animationEnded = false;
+            }
+
+        }
     }
 
 }
